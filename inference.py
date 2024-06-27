@@ -8,7 +8,6 @@ import torch
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 import sys
-# sys.path.append('/home/users/nus/e0672129/scratch/VLMEvalKit')
 from vlmeval.config import supported_VLM
 from vlmeval.utils import track_progress_rich
 from vlmeval.smp import *
@@ -78,7 +77,7 @@ if __name__ == '__main__':
         for i, struct in tqdm(zip(indices, structs)):
             response = model.generate(**struct)
             torch.cuda.empty_cache()
-            # torch.cuda("1")
+
             res[i] = response
             if (len(res) + 1) % 20 == 0:
                 dump(res, output_path)
